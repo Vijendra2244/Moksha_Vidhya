@@ -1,10 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const userRoutes = require("./route/user.route")
 const { ConnectToDB } = require("./config/db.config");
 dotenv.config();
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(express.json()); 
+
+// Routes
+app.use('/users', userRoutes);
 
 // Basic home route page for testing
 app.get("/", (req, res) => {
