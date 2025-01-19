@@ -1,11 +1,13 @@
 const express = require('express');
-const { registerUser} = require('../controllers/user.controller');
+const { registerUser, loginUser, logoutUser} = require('../controllers/user.controller');
 const {verifyRole} = require('../middleware/auth.middleware')
 
 const router = express.Router();
 
 // Public Routes
 router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.post('/logout', logoutUser);
 
 //  protected route for admins only
 router.get('/admin-only', verifyRole(['admin']), (req, res) => {
